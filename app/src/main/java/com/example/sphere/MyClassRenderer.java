@@ -40,8 +40,63 @@ public class MyClassRenderer implements GLSurfaceView.Renderer{
     private Texture tex1,tex2, tex3;
     private Sphere sphere, sphere2, sphere3;
     float k = 2.0f;
+    public MyClassRenderer(Context context) {
+    this.context=context;
+    xposition=1f;
+    yposition=1f;
+    zposition=4f;
+    xlook = 0;
+    ylook = 0;
+    zlook = 0;
+    xtop = 0;
+    ytop = 1;
+    ztop = 0;
+    ByteBuffer b1 = ByteBuffer.allocateDirect(4 * 4);
+    b1.order(ByteOrder.nativeOrder());
+    ambientmaterialBuffer = b1.asFloatBuffer();
+    ambientmaterialBuffer.put(ambientmaterialArray);
+    ambientmaterialBuffer.position(0);
 
-    
+    ByteBuffer b2 = ByteBuffer.allocateDirect(4 * 4);
+    b2.order(ByteOrder.nativeOrder());
+    diffusematerialBuffer = b2.asFloatBuffer();
+    diffusematerialBuffer.put(diffusematerialArray);
+    diffusematerialBuffer.position(0);
+
+    ByteBuffer b3 = ByteBuffer.allocateDirect(4 * 4);
+    b3.order(ByteOrder.nativeOrder());
+    specularmaterialBuffer = b3.asFloatBuffer();
+    specularmaterialBuffer.put(specularmaterialArray);
+    specularmaterialBuffer.position(0);
+
+    ByteBuffer b4 = ByteBuffer.allocateDirect(4 * 4);
+    b4.order(ByteOrder.nativeOrder());
+    positionlightBuffer = b4.asFloatBuffer();
+    positionlightBuffer.put(positionlightArray);
+    positionlightBuffer.position(0);
+
+    ByteBuffer b5 = ByteBuffer.allocateDirect(4 * 4);
+    b5.order(ByteOrder.nativeOrder());
+    ambientlightBuffer = b5.asFloatBuffer();
+    ambientlightBuffer.put(ambientlightArray);
+    ambientlightBuffer.position(0);
+
+    ByteBuffer b6 = ByteBuffer.allocateDirect(4 * 4);
+    b6.order(ByteOrder.nativeOrder());
+    diffuselightBuffer = b6.asFloatBuffer();
+    diffuselightBuffer.put(diffuselightArray);
+    diffuselightBuffer.position(0);
+
+    ByteBuffer b7 = ByteBuffer.allocateDirect(4 * 4);
+    b7.order(ByteOrder.nativeOrder());
+    specularlightBuffer = b7.asFloatBuffer();
+    specularlightBuffer.put(specularlightArray);
+    specularlightBuffer.position(0);
+
+    sphere = new Sphere(0.5f);
+    sphere2 = new Sphere(0.3f);
+    sphere3 = new Sphere(0.1f);
+    }    
 
     float p;
     boolean check = true;

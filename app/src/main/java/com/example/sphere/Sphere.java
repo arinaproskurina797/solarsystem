@@ -25,8 +25,39 @@ public class Sphere {
         byteBuf = ByteBuffer.allocateDirect(5000*2*4);
         byteBuf.order(ByteOrder.nativeOrder());
         textureBuffer=byteBuf.asFloatBuffer();
-        
-        mVertexBuffer.position(0);
+        for (theta=-90;theta<=90-dtheta;theta+=dtheta) {
+    for (phi=0;phi<=360-dphi;phi+=dphi){
+
+    mVertexBuffer.put((float)(Math.cos(theta*DTOR) * Math.cos(phi*DTOR))*R);
+    mVertexBuffer.put((float)(Math.cos(theta*DTOR) * Math.sin(phi*DTOR))*R);
+    mVertexBuffer.put((float)(Math.sin(theta*DTOR))*R);
+
+    mVertexBuffer.put((float)(Math.cos((theta+dtheta)*DTOR) * Math.cos(phi*DTOR))*R);
+    mVertexBuffer.put((float)(Math.cos((theta+dtheta)*DTOR) * Math.sin(phi*DTOR))*R);
+    mVertexBuffer.put((float)(Math.sin((theta+dtheta)*DTOR))*R);
+
+    mVertexBuffer.put((float)(Math.cos((theta+dtheta)*DTOR) * Math.cos((phi+dphi)*DTOR))*R);
+    mVertexBuffer.put((float)(Math.cos((theta+dtheta)*DTOR) * Math.sin((phi+dphi)*DTOR))*R);
+    mVertexBuffer.put((float)(Math.sin((theta+dtheta)*DTOR))*R);
+    n+=3;
+
+    mVertexBuffer.put((float)(Math.cos(theta*DTOR) * Math.cos((phi+dphi)*DTOR))*R);
+    mVertexBuffer.put((float)(Math.cos(theta*DTOR) * Math.sin((phi+dphi)*DTOR))*R);
+    mVertexBuffer.put((float)(Math.sin(theta*DTOR))*R);
+    n++;
+    textureBuffer.put((float)(phi/360.0f));
+    textureBuffer.put((float)((90+theta)/180.0f));
+
+    textureBuffer.put((float)(phi/360.0f));
+    textureBuffer.put((float)((90+theta+dtheta)/180.0f));
+
+    textureBuffer.put((float)((phi+dphi)/360.0f));
+    textureBuffer.put((float)((90+theta+dtheta)/180.0f));
+
+    textureBuffer.put((float)((phi+dphi)/360.0f));
+    textureBuffer.put((float)((90+theta)/180.0f));
+}
+}        mVertexBuffer.position(0);
         textureBuffer.position(0);
     }
 

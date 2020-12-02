@@ -17,7 +17,16 @@ public class Texture {
         name=names[0];
         gl.glPixelStorei(GL10.GL_UNPACK_ALIGNMENT,1);
         gl.glBindTexture(GL10.GL_TEXTURE_2D, name);
-        
+        gl.glTexParameterx(GL11.GL_TEXTURE_2D,
+                GL11.GL_GENERATE_MIPMAP, GL11.GL_TRUE);
+        gl.glTexParameterf(GL10.GL_TEXTURE_2D,
+                GL10.GL_TEXTURE_MIN_FILTER,
+                GL10.GL_LINEAR_MIPMAP_LINEAR);
+        gl.glTexParameterf(GL10.GL_TEXTURE_2D,
+                GL10.GL_TEXTURE_MAG_FILTER,
+                GL10.GL_LINEAR);
+        gl.glTexParameterx(GL10.GL_TEXTURE_2D,
+                GL10.GL_TEXTURE_WRAP_S, GL10.GL_REPEAT);        
         gl.glTexParameterx(GL10.GL_TEXTURE_2D,
                 GL10.GL_TEXTURE_WRAP_T,
                 GL10.GL_REPEAT);
